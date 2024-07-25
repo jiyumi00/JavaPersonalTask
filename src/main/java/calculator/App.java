@@ -4,28 +4,6 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class App {
-    static int calculation(int num1,int num2,char operator){
-        
-        switch (operator){
-            case '+' :
-                return num1+num2;
-            case '-':
-                return num1-num2;
-            case '*':
-                return num1*num2;
-            case '/':
-               //num2이 0일때 예외처리
-                if(num2==0){
-                    System.out.println("분모가 0이 되면 안됩니다");
-                    return -1;
-                }
-                return num1/num2;
-            default:
-                System.out.println("잘못된 연산자입니다");
-                return -1;
-        }
-    }
-
     public static void main(String[] args) {
         Scanner sc=new Scanner(System.in);
         int result=0;
@@ -48,10 +26,18 @@ public class App {
             System.out.print("사칙연산 기호를 입력하세요: ");
             char operator=sc.next().charAt(0);
 
-            //3. 연산 후 결과값 출력
-            result=calculation(num1,num2,operator);
-
-            System.out.println("결과: "+result);
+            //3. 연산 후 결과값 출력 -> Calculator클래스
+            try{
+                Calculator calculator=new Calculator();
+                result=calculator.calculate(num1,num2,operator);
+                System.out.println("결과: "+result);
+            }catch (ArithmeticException e){
+                System.out.println("0으로 나눌 수 없습니다");
+                continue;
+            }catch(IllegalStateException e){
+                System.out.println("연산자 형식이 맞지 않습니다");
+                continue;
+            }
 
             //6. 10개 초과하는 경우, 가장 먼저 저장된 결과 삭제, 새로운 연산 결과 저장
             if(index>n-1){
