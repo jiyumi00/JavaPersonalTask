@@ -59,14 +59,14 @@ public class App {
 
 
 
-            //remove입력 받으면 가장 먼저 저장된 결과 삭제 -> Calculator클래스의 removeResult 메서드 사용
+            //remove입력 받으면 가장 먼저 저장된 결과 삭제 -> Calculator클래스의 removeResult()사용
             System.out.println("가장 먼저 저장된 연산 결과를 삭제하시겠습니까? (remove 입력 시 삭제)");
             String remove=sc.next();
             if(remove.equals("remove")){
                 calculator.removeResult();
             }
 
-            //8. 저장된 연산 결과 전부 출력
+            //8. 저장된 연산 결과 전부 출력 -> Calculator클래스의 inquiryResult()사용
             System.out.println("저장된 연산결과를 조회하시겠습니까? (inquiry 입력 시 조회)");
             String inquiry=sc.next();
             if(inquiry.equals("inquiry")){
@@ -78,7 +78,7 @@ public class App {
                 System.out.println();
                 //ArrayList 출력
                 System.out.print("ArrayList: ");
-                list.forEach(data-> System.out.print(data+" "));
+                calculator.inquiryResults();
                 System.out.println();
             }
 

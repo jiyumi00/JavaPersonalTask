@@ -13,9 +13,16 @@ public class Calculator {
         list.add(result);
     }
 
+    //삭제
     public void removeResult(){
         list.remove(0);
     }
+    //조회
+    public void inquiryResults(){
+        list.forEach(data-> System.out.print(data+" "));
+    }
+
+    //연산
     public int calculate(int num1,int num2,char operator){
         /* 연산 결과를 저장하는 컬렉션 타입 필드 선언 및 생성 */
         switch (operator){
