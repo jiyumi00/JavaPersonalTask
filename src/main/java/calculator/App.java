@@ -29,7 +29,7 @@ public class App {
             System.out.print("사칙연산 기호를 입력하세요: ");
             char operator=sc.next().charAt(0);
 
-            //3. 연산 후 결과값 출력 -> Calculator클래스의 calculate메소드
+            //3. 연산 후 결과값 출력 -> Calculator클래스의 calculate메소드 사용
             try{
                 result=calculator.calculate(num1,num2,operator);
                 System.out.println("결과: "+result);
@@ -54,14 +54,16 @@ public class App {
                 index++;
             }
 
-            //7. 연산 결과 고정되지 않고 무한히 저장
+            //7. 연산 결과 고정되지 않고 무한히 저장 -> Calculator클래스의 Setter 메서드 사용
             calculator.setList(result);
 
-            //remove입력 받으면 가장 먼저 저장된 결과 삭제
+
+
+            //remove입력 받으면 가장 먼저 저장된 결과 삭제 -> Calculator클래스의 removeResult 메서드 사용
             System.out.println("가장 먼저 저장된 연산 결과를 삭제하시겠습니까? (remove 입력 시 삭제)");
             String remove=sc.next();
             if(remove.equals("remove")){
-                list.remove(0);
+                calculator.removeResult();
             }
 
             //8. 저장된 연산 결과 전부 출력

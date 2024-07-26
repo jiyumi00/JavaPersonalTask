@@ -13,8 +13,8 @@ public class Calculator {
         list.add(result);
     }
 
-    public void inquiryResults(){
-
+    public void removeResult(){
+        list.remove(0);
     }
     public int calculate(int num1,int num2,char operator){
         /* 연산 결과를 저장하는 컬렉션 타입 필드 선언 및 생성 */
