@@ -6,6 +6,9 @@ import java.util.Scanner;
 public class App {
     public static void main(String[] args) {
         Scanner sc=new Scanner(System.in);
+
+        //Calculator 인스턴스 생성
+        Calculator calculator=new Calculator();
         int result=0;
         //연산 결과 저장 배열 생성
         int n=10;
@@ -26,9 +29,8 @@ public class App {
             System.out.print("사칙연산 기호를 입력하세요: ");
             char operator=sc.next().charAt(0);
 
-            //3. 연산 후 결과값 출력 -> Calculator클래스
+            //3. 연산 후 결과값 출력 -> Calculator클래스의 calculate메소드
             try{
-                Calculator calculator=new Calculator();
                 result=calculator.calculate(num1,num2,operator);
                 System.out.println("결과: "+result);
             }catch (ArithmeticException e){
@@ -53,7 +55,7 @@ public class App {
             }
 
             //7. 연산 결과 고정되지 않고 무한히 저장
-            list.add(result);
+            calculator.setList(result);
 
             //remove입력 받으면 가장 먼저 저장된 결과 삭제
             System.out.println("가장 먼저 저장된 연산 결과를 삭제하시겠습니까? (remove 입력 시 삭제)");

@@ -9,8 +9,13 @@ public class Calculator {
     public ArrayList<Integer> getList(){
         return list;
     }
+    public void setList(int result){
+        list.add(result);
+    }
 
+    public void inquiryResults(){
 
+    }
     public int calculate(int num1,int num2,char operator){
         /* 연산 결과를 저장하는 컬렉션 타입 필드 선언 및 생성 */
         switch (operator){
