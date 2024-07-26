@@ -6,6 +6,10 @@ import java.util.ArrayList;
 public class Calculator {
     private ArrayList<Integer> list=new ArrayList<>();
 
+    //생성자 구현
+    public Calculator(){
+        list.clear(); // 필드 초기화
+    }
     public ArrayList<Integer> getList(){
         return list;
     }
