@@ -29,21 +29,25 @@ public class ArithmeticCalculator extends Calculator{
 
     //사칙 연산
     @Override
-    public double calculate(){
+    public double calculate(){ //연산 메서드의 책임 분리
         /* 연산 결과를 저장하는 컬렉션 타입 필드 선언 및 생성 */
         switch (operator){
             case '+' :
-                return num1+num2;
+                AddOperator addOperator=new AddOperator();
+                return addOperator.operate(num1,num2);
             case '-':
-                return num1-num2;
+                SubtractOperator subtractOperator=new SubtractOperator();
+                return subtractOperator.operate(num1,num2);
             case '*':
-                return num1*num2;
+                MultiplyOperator multiplyOperator=new MultiplyOperator();
+                return multiplyOperator.operate(num1,num2);
             case '/':
                 //num2이 0일때 예외처리
                 if(num2==0){
                     throw new ArithmeticException();
                 }
-                return num1/num2;
+                DivideOperator divideOperator=new DivideOperator();
+                return divideOperator.operate(num1,num2);
             default:
                 throw new IllegalStateException();
         }
