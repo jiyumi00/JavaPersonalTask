@@ -5,18 +5,17 @@ import java.util.Scanner;
 
 public class App {
 
-
     public static void main(String[] args) {
         Scanner sc=new Scanner(System.in);
 
-        //Calculator 인스턴스 생성
-        Calculator calculator=new Calculator();
-        int result=0;
+        double result=0;
         //연산 결과 저장 배열 생성
         int n=10;
         int index=0;
-        int results[]=new int[n];
+        double results[]=new double[n];
 
+        ArithmeticCalculator arithmeticCalculator=new ArithmeticCalculator();
+        CircleCalculator circleCalculator=new CircleCalculator(); //업캐스팅
         while(true){
             System.out.print("사칙연산:1, 원의 넓이:2 >> ");
             int option=sc.nextInt();
@@ -35,7 +34,8 @@ public class App {
 
                 //3. 연산 후 결과값 출력 -> Calculator클래스의 calculate메소드 사용
                 try{
-                    result=calculator.calculate(num1,num2,operator);
+                    arithmeticCalculator.setInput(num1,num2,operator);
+                     result=arithmeticCalculator.calculate();
                     System.out.println("결과: "+result);
                 }catch (ArithmeticException e){
                     System.out.println("0으로 나눌 수 없습니다");
@@ -59,13 +59,13 @@ public class App {
                 }
 
                 //7. 연산 결과 고정되지 않고 무한히 저장 -> Calculator클래스의 Setter 메서드 사용
-                calculator.setList(result);
+                arithmeticCalculator.setList(result);
 
                 //remove입력 받으면 가장 먼저 저장된 결과 삭제 -> Calculator클래스의 removeResult()사용
                 System.out.println("가장 먼저 저장된 연산 결과를 삭제하시겠습니까? (remove 입력 시 삭제)");
                 String remove=sc.next();
                 if(remove.equals("remove")){
-                    calculator.removeResult();
+                    arithmeticCalculator.removeResult();
                 }
 
                 //8. 저장된 연산 결과 전부 출력 -> Calculator클래스의 inquiryResult()사용
@@ -74,25 +74,27 @@ public class App {
                 if(inquiry.equals("inquiry")){
                     // 배열 출력
                     System.out.print("배열 : ");
-                    for(int num:results){
+                    for(double num:results){
                         System.out.print(num+" ");
                     }
                     System.out.println();
                     //ArrayList 출력
-                    System.out.print("ArrayList: ");
-                    calculator.inquiryResults();
+                    System.out.print("ArrayList: "+arithmeticCalculator.getList());
                     System.out.println();
                 }
 
             //원의 넓이를 구하는 경우
             }else if(option==2){
+
                 //반지름 입력
                 System.out.print("반지름을 입력하세요: ");
                 int radius=sc.nextInt();
-                double circleArea=calculator.calculateCircleArea(radius);
+
+                circleCalculator.setInput(radius);
+                double circleArea=circleCalculator.calculate();
                 //원의 넓이 저장
-                calculator.setCircleAreaList(circleArea);
-                System.out.println("원의 넓이: "+calculator.getCircleAreaList());
+                circleCalculator.setList(circleArea);
+                System.out.println("원의 넓이: "+circleCalculator.getList());
 
             }
 
