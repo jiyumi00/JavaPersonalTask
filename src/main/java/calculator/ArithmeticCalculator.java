@@ -13,10 +13,12 @@ public class ArithmeticCalculator extends Calculator{
         this.operator=operator;
     }
     //리스트 조회
+    @Override
     public ArrayList<Double> getList(){
         return list;
     }
 
+    @Override
     public void setList(double result){
         list.add(result);
     }
@@ -48,6 +50,10 @@ public class ArithmeticCalculator extends Calculator{
                 }
                 DivideOperator divideOperator=new DivideOperator();
                 return divideOperator.operate(num1,num2);
+
+            case '%':
+                ModOperator modOperator=new ModOperator();
+                return modOperator.operate(num1,num2);
             default:
                 throw new IllegalStateException();
         }

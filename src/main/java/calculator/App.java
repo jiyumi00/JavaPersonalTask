@@ -15,7 +15,7 @@ public class App {
         double results[]=new double[n];
 
         ArithmeticCalculator arithmeticCalculator=new ArithmeticCalculator();
-        CircleCalculator circleCalculator=new CircleCalculator(); //업캐스팅
+        CircleCalculator circleCalculator=new CircleCalculator();
         while(true){
             System.out.print("사칙연산:1, 원의 넓이:2 >> ");
             int option=sc.nextInt();
