@@ -1,25 +1,30 @@
 package calculator;
 
+import calculator.operator.*;
+
 import java.util.ArrayList;
 
-public class ArithmeticCalculator extends Calculator{
+public class ArithmeticCalculator<T1 extends Number,T2 extends Number> extends Calculator{
 
-    private int num1,num2;
-    private char operator;
-    private ArrayList<Double> list=new ArrayList<>();
-    public void setInput(int num1,int num2,char operator){
+    private T1 num1;
+    private T2 num2;
+    private OperatorType operator;
+    private ArrayList<Number> list=new ArrayList<>();
+
+
+    public void setInput(T1 num1,T2 num2,char operator){
         this.num1=num1;
         this.num2=num2;
-        this.operator=operator;
+        this.operator= OperatorType.fromChar(operator);
     }
     //리스트 조회
     @Override
-    public ArrayList<Double> getList(){
+    public ArrayList<Number> getList(){
         return list;
     }
 
     @Override
-    public void setList(double result){
+    public void setList(Number result){
         list.add(result);
     }
 
@@ -31,28 +36,29 @@ public class ArithmeticCalculator extends Calculator{
 
     //사칙 연산
     @Override
-    public double calculate(){ //연산 메서드의 책임 분리
+    public Number calculate(){ //연산 메서드의 책임 분리
         /* 연산 결과를 저장하는 컬렉션 타입 필드 선언 및 생성 */
+
         switch (operator){
-            case '+' :
-                AddOperator addOperator=new AddOperator();
+            case ADD :
+                AddOperator<T1,T2> addOperator=new AddOperator<>();
                 return addOperator.operate(num1,num2);
-            case '-':
-                SubtractOperator subtractOperator=new SubtractOperator();
+            case SUBTRACT:
+                SubtractOperator<T1,T2> subtractOperator=new SubtractOperator<>();
                 return subtractOperator.operate(num1,num2);
-            case '*':
-                MultiplyOperator multiplyOperator=new MultiplyOperator();
+            case MULTIPLY:
+                MultiplyOperator<T1,T2> multiplyOperator=new MultiplyOperator<>();
                 return multiplyOperator.operate(num1,num2);
-            case '/':
+            case DIVIDE:
                 //num2이 0일때 예외처리
-                if(num2==0){
+                if(num2.doubleValue()==0){
                     throw new ArithmeticException();
                 }
-                DivideOperator divideOperator=new DivideOperator();
+                DivideOperator<T1,T2> divideOperator=new DivideOperator<>();
                 return divideOperator.operate(num1,num2);
 
-            case '%':
-                ModOperator modOperator=new ModOperator();
+            case MOD:
+                ModOperator<T1,T2> modOperator=new ModOperator<>();
                 return modOperator.operate(num1,num2);
             default:
                 throw new IllegalStateException();

@@ -5,24 +5,24 @@ import java.util.ArrayList;
 public class CircleCalculator extends Calculator{
 
     private int radius;
-    private  ArrayList<Double> list=new ArrayList<>();
+    private  ArrayList<Number> list=new ArrayList<>();
 
     public void setInput(int radius){
         this.radius=radius;
     }
 
     @Override
-    public double calculate(){
+    public Number calculate(){
         final double PI=3.14; // final, 정적변수 더이상 수정이 불가능하기 때문에 사용
         return PI*radius*radius;
     }
 
 
-    public void setList(double result) {
+    public void setList(Number result) {
         list.add(result);
     }
 
-    public ArrayList<Double> getList(){
+    public ArrayList<Number> getList(){
         return list;
     }
 

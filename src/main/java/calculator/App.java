@@ -8,13 +8,13 @@ public class App {
     public static void main(String[] args) {
         Scanner sc=new Scanner(System.in);
 
-        double result=0;
+        Number result=0;
         //연산 결과 저장 배열 생성
         int n=10;
         int index=0;
-        double results[]=new double[n];
+        Number results[]=new Number[n];
 
-        ArithmeticCalculator arithmeticCalculator=new ArithmeticCalculator();
+        ArithmeticCalculator<Number,Number> arithmeticCalculator=new ArithmeticCalculator();
         CircleCalculator circleCalculator=new CircleCalculator();
         while(true){
             System.out.print("사칙연산:1, 원의 넓이:2 >> ");
@@ -22,18 +22,19 @@ public class App {
 
             //사칙연산을 구하는 경우
             if(option==1){
-                //1. 숫자입력
-                System.out.print("첫 번째 숫자를 입력하세요: ");
-                int num1=sc.nextInt();
-                System.out.print("두 번째 숫자를 입력하세요: ");
-                int num2=sc.nextInt();
 
-                //2. 사칙연산 기호 입력
-                System.out.print("사칙연산 기호를 입력하세요: ");
-                char operator=sc.next().charAt(0);
-
-                //3. 연산 후 결과값 출력 -> Calculator클래스의 calculate메소드 사용
                 try{
+                    //1. 숫자입력
+                    System.out.print("첫 번째 숫자를 입력하세요: ");
+                    Number num1=ChangeInputType.getNumberFromInput(sc.next());
+                    System.out.print("두 번째 숫자를 입력하세요: ");
+                    Number num2=ChangeInputType.getNumberFromInput(sc.next());
+
+                    //2. 사칙연산 기호 입력
+                    System.out.print("사칙연산 기호를 입력하세요: ");
+                    char operator=sc.next().charAt(0);
+
+                    //3. 연산 후 결과값 출력 -> Calculator클래스의 calculate메소드 사용
                     arithmeticCalculator.setInput(num1,num2,operator);
                      result=arithmeticCalculator.calculate();
                     System.out.println("결과: "+result);
@@ -41,7 +42,7 @@ public class App {
                     System.out.println("0으로 나눌 수 없습니다");
                     continue;
                 }catch(IllegalStateException e){
-                    System.out.println("연산자 형식이 맞지 않습니다");
+                    System.out.println("입력 형식이 맞지 않습니다");
                     continue;
                 }
 
@@ -74,7 +75,7 @@ public class App {
                 if(inquiry.equals("inquiry")){
                     // 배열 출력
                     System.out.print("배열 : ");
-                    for(double num:results){
+                    for(Number num:results){
                         System.out.print(num+" ");
                     }
                     System.out.println();
@@ -91,7 +92,7 @@ public class App {
                 int radius=sc.nextInt();
 
                 circleCalculator.setInput(radius);
-                double circleArea=circleCalculator.calculate();
+                Number circleArea=circleCalculator.calculate();
                 //원의 넓이 저장
                 circleCalculator.setList(circleArea);
                 System.out.println("원의 넓이: "+circleCalculator.getList());
